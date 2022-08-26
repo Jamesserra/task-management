@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color:#7fa99b;
+  color: #f7f6ee;
+}
+
+section {
+  display: flex;
+  width: 70rem;
+  margin-bottom: 2rem;
+}
+
+.button {
+  background-color: #fbf2d5;
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+}
+
+.button.addTask {
+  background-color: #fbf2d5;
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: #394a51;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+}
+
+.button.moveTask {
+  font-size: 1.5rem;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 0;
+  line-height: 1rem;
+}
+
+.button.delete {
+  background-color: pink;
+  border-color: pink;
+}
+
+.button:hover {
+  background-color: #394a51;
+  border-color: #394a51;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 75rem) {
+  section {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+  }
+}
+
+
