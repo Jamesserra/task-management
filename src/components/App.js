@@ -1,38 +1,82 @@
-import { useState, useEffect } from "react";
-import { COLORS } from "../styles/colors";
+import React, { useState, useEffect } from "react";
 import "../styles/App.css";
 import StatusLine from "./StatusLine";
 
-const App = () => {
-  const [task, setTasks] = useState([]);
+function App() {
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    console.log("test");
+    loadTasksFromLocalStorage();
   }, []);
 
-  const addEmptyTask = (status) => {
-    ////
-  };
+  function addEmptyTask(status) {
+    let newTaskId = tasks.length + 1;
 
-  const addTask = (task) => {
-    ////
-  };
+    setTasks((tasks) => [
+      ...tasks,
+      {
+        id: newTaskId,
+        title: "",
+        description: "",
+        urgency: "",
+        status: status,
+      },
+    ]);
+  }
 
-  const deleteTask = (id) => {
-    ////
-  };
+  function addTask(taskToAdd) {
+    let filteredTasks = tasks.filter((task) => {
+      return task.id !== taskToAdd.id;
+    });
 
-  const moveTask = (id, newStatus) => {
-    ////
-  };
+    let newTaskList = [...filteredTasks, taskToAdd];
 
-  const saveTasksToLocalStorage = (tasks) => {
-    ////
-  };
+    setTasks(newTaskList);
 
-  const loadTasksToLocalStorage = () => {
-    ////
-  };
+    saveTasksToLocalStorage(newTaskList);
+  }
+
+  function deleteTask(taskId) {
+    let filteredTasks = tasks.filter((task) => {
+      return task.id !== taskId;
+    });
+
+    setTasks(filteredTasks);
+
+    saveTasksToLocalStorage(filteredTasks);
+  }
+
+  function moveTask(id, newStatus) {
+    let task = tasks.filter((task) => {
+      return task.id === id;
+    })[0];
+
+    let filteredTasks = tasks.filter((task) => {
+      return task.id !== id;
+    });
+
+    task.status = newStatus;
+
+    let newTaskList = [...filteredTasks, task];
+
+    setTasks(newTaskList);
+
+    saveTasksToLocalStorage(newTaskList);
+  }
+
+  function saveTasksToLocalStorage(tasks) {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  function loadTasksFromLocalStorage() {
+    let loadedTasks = localStorage.getItem("tasks");
+
+    let tasks = JSON.parse(loadedTasks);
+
+    if (tasks) {
+      setTasks(tasks);
+    }
+  }
 
   return (
     <div className="App">
@@ -40,7 +84,7 @@ const App = () => {
       <main>
         <section>
           <StatusLine
-            task={task}
+            tasks={tasks}
             addEmptyTask={addEmptyTask}
             addTask={addTask}
             deleteTask={deleteTask}
@@ -48,7 +92,7 @@ const App = () => {
             status="Backlog"
           />
           <StatusLine
-            task={task}
+            tasks={tasks}
             addEmptyTask={addEmptyTask}
             addTask={addTask}
             deleteTask={deleteTask}
@@ -56,7 +100,7 @@ const App = () => {
             status="In Progress"
           />
           <StatusLine
-            task={task}
+            tasks={tasks}
             addEmptyTask={addEmptyTask}
             addTask={addTask}
             deleteTask={deleteTask}
@@ -67,6 +111,6 @@ const App = () => {
       </main>
     </div>
   );
-};
+}
 
 export default App;

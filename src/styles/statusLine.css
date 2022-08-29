@@ -4,10 +4,9 @@
 }
 
 .statusLine h3 {
-    font-weight: 500;
-    margin: 1rem 0;
+  font-weight: 500;
+  margin: 1rem 0;
  }
-
 
 @media only screen and (max-width: 75rem) {
   .statusLine {
