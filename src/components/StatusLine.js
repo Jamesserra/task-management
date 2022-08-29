@@ -4,7 +4,7 @@ import Task from "./Task";
 
 export default function StatusLine(props) {
   const { status, tasks, addTask, deleteTask, addEmptyTask, moveTask } = props;
-
+  console.log(tasks);
   let taskList, tasksForStatus;
 
   function handleAddEmpty() {

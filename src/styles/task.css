@@ -3,12 +3,14 @@
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 1px solid white;
   border-radius: 20px;
 }
 
 .title {
   text-align: center;
+  color: #394a51;
   margin-bottom: 0.5rem;
   padding: 0.5rem 0;
   width: 100%;
@@ -24,10 +26,8 @@ form {
 }
 
 form input {
-  background-color: transparent;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  color: white;
   text-align: center;
   resize: none;
   display: flex;
